@@ -8,8 +8,12 @@ namespace mp {
 
 class MpUnsignedInt final {
  public:
+  constexpr static std::size_t kDefaultBitCount =
+      sizeof(unsigned long long) * 8;
+
   MpUnsignedInt();
-  MpUnsignedInt(unsigned long long);
+  MpUnsignedInt(unsigned long long number);
+  MpUnsignedInt(unsigned long long number, std::size_t bits_count);
   explicit MpUnsignedInt(const std::string& str);
 
   operator unsigned long long() const;
@@ -20,6 +24,8 @@ class MpUnsignedInt final {
 
   bool operator[](std::size_t pos) const;
   void SetBit(std::size_t pos, bool value = true);
+
+  std::size_t BitsCount() const;
 
   MpUnsignedInt operator~() const;
 
